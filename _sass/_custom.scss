@@ -1,0 +1,287 @@
+/* ==========================================================================
+   CUSTOM THEME — signature visual identity
+   Palette: ink #14181f · paper #ffffff · canvas #f4f6f8 ·
+            slate #4b5563 · accent #e8590c (KUKA-orange) · teal #0f8b8d
+   Type: Space Grotesk (display) · Inter (body) · IBM Plex Mono (labels/meta)
+   Signature: machine-vision "calibration bracket" frame + schematic grid
+   ========================================================================== */
+
+:root {
+  --ink: #14181f;
+  --paper: #ffffff;
+  --canvas: #f4f6f8;
+  --slate: #4b5563;
+  --line: #e4e8ec;
+  --accent: #e8590c;
+  --accent-dim: #c1440e;
+  --teal: #0f8b8d;
+}
+
+/* -----------------------------------------------------------------------
+   Masthead — dark schematic header with faint blueprint grid
+   ----------------------------------------------------------------------- */
+.masthead {
+  background:
+    linear-gradient(var(--ink), var(--ink)),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 28px);
+  border-bottom: 1px solid var(--ink);
+
+  a {
+    color: var(--masthead-link-color);
+  }
+
+  .site-title,
+  .masthead__menu-item--lg a {
+    font-family: $header-font-family;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .masthead__menu-item a {
+    font-family: $monospace;
+    font-size: 0.72em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-bottom: 3px;
+    border-bottom: 2px solid transparent;
+    transition: $global-transition;
+
+    &:hover {
+      color: var(--accent) !important;
+      border-bottom-color: var(--accent);
+    }
+  }
+}
+
+.greedy-nav {
+  background: transparent;
+
+  .visible-links li a {
+    color: var(--masthead-link-color);
+  }
+
+  button {
+    background: transparent;
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Typography accents
+   ----------------------------------------------------------------------- */
+body {
+  font-family: $sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font-family;
+  color: var(--ink);
+}
+
+/* Section dividers created via Markdown `Heading\n======` (h2 in page content)
+   act as real structural labels for CV / About sections — treat them as such:
+   a mono eyebrow rendered via a left index bar, not decoration. */
+.page__content h2 {
+  position: relative;
+  margin-top: 2.4em;
+  padding-left: 0.85em;
+  padding-top: 0.1em;
+  padding-bottom: 0.1em;
+  border-left: 3px solid var(--accent);
+  text-transform: uppercase;
+  font-size: 1.05em;
+  letter-spacing: 0.06em;
+  font-family: $monospace;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.page__content h3 {
+  font-family: $header-font-family;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* -----------------------------------------------------------------------
+   Links & buttons
+   ----------------------------------------------------------------------- */
+a {
+  color: var(--accent);
+
+  &:hover {
+    color: var(--accent-dim);
+  }
+}
+
+.page__content a {
+  text-underline-offset: 3px;
+}
+
+.btn {
+  border-radius: $border-radius;
+  font-family: $monospace;
+  font-size: 0.75em;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.btn--inverse {
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  background: transparent;
+
+  &:hover {
+    color: #fff;
+    background: var(--ink);
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Sidebar / author profile — calibration-bracket avatar frame
+   ----------------------------------------------------------------------- */
+.sidebar {
+  font-family: $sans-serif;
+}
+
+.author__avatar {
+  position: relative;
+  padding: 8px;
+
+  img {
+    border-radius: 3px !important;
+    border: 1px solid var(--line);
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-color: var(--accent);
+    border-style: solid;
+    border-width: 0;
+  }
+
+  &::before {
+    top: 0;
+    left: 0;
+    border-top-width: 2px;
+    border-left-width: 2px;
+  }
+
+  &::after {
+    bottom: 0;
+    right: 0;
+    border-bottom-width: 2px;
+    border-right-width: 2px;
+  }
+}
+
+.author__name {
+  font-family: $header-font-family;
+  font-weight: 700;
+}
+
+.author__bio {
+  color: var(--slate);
+}
+
+.author__urls-wrapper .btn {
+  border-radius: $border-radius;
+}
+
+.author__urls li {
+  a {
+    color: var(--slate);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Archive lists — CV entries, publications, teaching, portfolio
+   ----------------------------------------------------------------------- */
+.list__item .archive__item,
+.archive__item {
+  padding: 0.6em 0.9em;
+  border-left: 3px solid var(--line);
+  background: var(--canvas);
+  border-radius: 0 $border-radius $border-radius 0;
+  margin-bottom: 0.6em;
+  transition: $global-transition;
+
+  &:hover {
+    border-left-color: var(--teal);
+    background: mix(#fff, $code-background-color, 40%);
+  }
+}
+
+.archive__item-title {
+  font-family: $header-font-family;
+  font-weight: 600;
+  margin-top: 0.2em;
+}
+
+.archive__subtitle {
+  font-family: $monospace;
+  font-size: 0.75em;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--teal);
+  border-bottom: none;
+}
+
+/* -----------------------------------------------------------------------
+   CV page: work-experience bullet blocks get a subtle left rail
+   ----------------------------------------------------------------------- */
+.page__content ul li {
+  margin-bottom: 0.3em;
+}
+
+.page__content strong {
+  color: var(--ink);
+}
+
+/* Inline "skill badge" support — used via <span class="badge"> in markdown/HTML */
+.badge {
+  display: inline-block;
+  font-family: $monospace;
+  font-size: 0.72em;
+  letter-spacing: 0.02em;
+  padding: 0.15em 0.6em;
+  margin: 0.15em 0.25em 0.15em 0;
+  border-radius: 999px;
+  background: var(--canvas);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+/* -----------------------------------------------------------------------
+   Footer
+   ----------------------------------------------------------------------- */
+.page__footer {
+  background: var(--ink);
+
+  footer {
+    color: rgba(255,255,255,0.6);
+  }
+
+  a {
+    color: rgba(255,255,255,0.85);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Code
+   ----------------------------------------------------------------------- */
+code {
+  font-family: $monospace;
+  border-radius: $border-radius;
+}
